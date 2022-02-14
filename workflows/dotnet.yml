@@ -1,0 +1,38 @@
+name: Publish Package
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      # Build ArgumentAssert
+      - name: Restore dependencies
+        run: dotnet restore Source/ArgumentAssert/ArgumentAssert.csproj
+      - name: Build
+        run: dotnet build --no-restore Source/ArgumentAssert/ArgumentAssert.csproj
+
+      # Build Samples
+      - name: Build Assert Value Is In Range Sample
+        run: dotnet build Samples/AssertValueIsInRange/AssertValueIsInRange.csproj
+      - name: Build Assert Value Is Not Null Sample
+        run: dotnet build Samples/AssertValueIsNotNull/AssertValueIsNotNull.csproj
+
+      # Publish ArgumentAssert
+      - name: Publish
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+            PROJECT_FILE_PATH: Source/ArgumentAssert/ArgumentAssert.csproj
+            NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
