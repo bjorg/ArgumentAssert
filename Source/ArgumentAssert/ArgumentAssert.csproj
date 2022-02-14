@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Deterministic>true</Deterministic>
+    <Nullable>enable</Nullable>
+
+    <PackageId>ArgumentAssert</PackageId>
+    <Version>1.0</Version>
+    <Title>Argument Assertion Library</Title>
+    <Description>Assert argument values and throw descriptive exceptions</Description>
+    <Copyright>Copyright (C) 2022</Copyright>
+    <Authors>Bjorg</Authors>
+
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/bjorg/ArgumentAssert</PackageProjectUrl>
+    <PackageTags>Argument;Validation</PackageTags>
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\*" />
+    <None Include="..\..\ReadMe.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
+
+
