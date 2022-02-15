@@ -26,14 +26,19 @@ Unhandled exception. System.ArgumentAssertException: value is > 0 and < 10
 
 ## Sample: Assertion informs code analysis
 
-The following code asserts the `value` argument is not null. Code analysis knows that the pattern is true when `Assert()` returns successfully. Therefore, there is no warning for the `return` statement.
+The following code asserts the `value` argument is not null and has a length between 1 to 9 characters. Code analysis knows that the pattern is true when `Assert()` returns successfully. Therefore, there is no warning for the `return` statement.
 ```csharp
 string AssertValueIsNotNull(string? value) {
-    ArgumentAssertException.Assert(value is not null);
+    ArgumentAssertException.Assert(value is { Length: > 0 and < 10 });
 
     // no warning on the following line
     return value.ToUpper();
 }
+```
+
+When the assertion fails, the exception message shows the failed expression.
+```
+Unhandled exception. System.ArgumentAssertException: value is { Length: > 0 and < 10 }
 ```
 
 ## License
