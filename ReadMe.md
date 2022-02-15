@@ -1,12 +1,10 @@
 # ArgumentAssert
 
-## Overview
-
 `ArgumentAssert` is a library that simplifies asserting conditions on arguments. If the condition is not met, an `ArgumentAssertException` is thrown with a description of the failed check. In addition, the `Assert()` method informs code-analysis that the check must have been true if execution continues.
 
-Add the following package reference to include `ArgumentAssert` package in your project.
-```xml
-<PackageReference Include="ArgumentAssert" Version="1.0.0" />
+Run the `dotnet` command from your project folder to add the `ArgumentAssert` package:
+```
+dotnet add package ArgumentAssert
 ```
 
 ## Sample: Assertion throws exception
