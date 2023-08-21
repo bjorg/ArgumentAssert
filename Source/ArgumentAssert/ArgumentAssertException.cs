@@ -19,9 +19,21 @@ namespace System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
+/// <summary>
+/// The <see cref="ArgumentAssertException"/> class represents an exception that is
+/// thrown when an assertion fails.
+/// </summary>
 public class ArgumentAssertException : ArgumentException {
 
     //--- Class Methods ---
+
+    /// <summary>
+    /// This method throws a <see cref="ArgumentAssertException"/> exception when the expression evaluates to false.
+    /// The method is annotated to inform code analysis about that the assertions of the expression are true when no
+    /// exception is thrown.
+    /// </summary>
+    /// <param name="expression">Expression to assert on</param>
+    /// <param name="expressionText">(optional) Text for exception message. The string equivalent of the expression is used when omitted.</param>
     public static void Assert(
         [DoesNotReturnIf(false)] bool expression,
         [CallerArgumentExpression("expression")] string? expressionText = default
@@ -38,4 +50,3 @@ public class ArgumentAssertException : ArgumentException {
     public ArgumentAssertException() { }
     public ArgumentAssertException(string? message) : base(message) { }
 }
-

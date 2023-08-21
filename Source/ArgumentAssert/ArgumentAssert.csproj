@@ -5,10 +5,10 @@
     <Nullable>enable</Nullable>
 
     <PackageId>ArgumentAssert</PackageId>
-    <Version>1.0</Version>
+    <Version>1.1</Version>
     <Title>Argument Assertion Library</Title>
     <Description>Assert argument values and throw descriptive exceptions</Description>
-    <Copyright>Copyright (C) 2022</Copyright>
+    <Copyright>Copyright (C) 2022-2023</Copyright>
     <Authors>Bjorg</Authors>
 
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>

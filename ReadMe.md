@@ -39,6 +39,19 @@ When the assertion fails, the exception message shows the failed expression.
 Unhandled exception. System.ArgumentAssertException: value is { Length: > 0 and < 10 }
 ```
 
+## Sample: Streamline calls to Assert()
+
+The following code uses the `using static` statement to expose the `Assert()` method without requiring the class name. This approach streamlines the code when many assertions are being performed throughout the codebase.
+```csharp
+using static System.ArgumentAssertException;
+
+int AssertValueIsInRange(int value) {
+    Assert(value is > 0 and < 10);
+    return value;
+}
+```
+
+
 ## License
 
 Licensed under the Apache License, Version 2.0 (the "License");
