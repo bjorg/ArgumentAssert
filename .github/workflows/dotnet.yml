@@ -21,7 +21,9 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore Source/ArgumentAssert/ArgumentAssert.csproj
       - name: Build
-        run: dotnet build --no-restore Source/ArgumentAssert/ArgumentAssert.csproj
+        run: dotnet build --no-restore --configuration Release Source/ArgumentAssert/ArgumentAssert.csproj
+      - name: Pack
+        run: dotnet pack --no-build --configuration Release --include-symbols -p:SymbolPackageFormat=snupkg -o . Source/ArgumentAssert/ArgumentAssert.csproj
 
       # Build Samples
       - name: Build Assert Value Is In Range Sample
@@ -32,7 +34,4 @@ jobs:
       # Publish ArgumentAssert
       - name: Publish
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: brandedoutcast/publish-nuget@v2.5.5
-        with:
-            PROJECT_FILE_PATH: Source/ArgumentAssert/ArgumentAssert.csproj
-            NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source "https://api.nuget.org/v3/index.json" --skip-duplicate
