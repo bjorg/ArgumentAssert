@@ -33,7 +33,7 @@ public class ArgumentAssertException : ArgumentException {
     /// exception is thrown.
     /// </summary>
     /// <param name="expression">Expression to assert on</param>
-    /// <param name="expressionText">(optional) Text for exception message. The string equivalent of the expression is used when omitted.</param>
+    /// <param name="expressionText">(optional) Text for exception message. The string equivalent of the expression used when omitted.</param>
     public static void Assert(
         [DoesNotReturnIf(false)] bool expression,
         [CallerArgumentExpression("expression")] string? expressionText = default
@@ -44,7 +44,7 @@ public class ArgumentAssertException : ArgumentException {
     }
 
     [DoesNotReturn]
-    internal static void Throw(string? message) => throw new ArgumentAssertException(message);
+    private static void Throw(string? message) => throw new ArgumentAssertException(message);
 
     //--- Constructors ---
     public ArgumentAssertException() { }
